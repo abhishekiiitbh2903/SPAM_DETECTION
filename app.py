@@ -6,11 +6,16 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import base64
 
-ps = PorterStemmer()
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
+
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
     nltk.download('punkt')
+ps = PorterStemmer()
 
 # Function to preprocess text
 def transform_text(text):
